@@ -10,13 +10,41 @@
         <meta name="generator" content="Visual Studio Code">
         <link href="../css/styles.css" rel="stylesheet">
         <link href="../css/index.css" rel="stylesheet">
-        <script src="../scripts/javascript/index.js"></script>
+        <link href="../css/ghibli-film.css" rel="stylesheet">
+        <script src="../scripts/javascript/index.js" defer></script>
+        <script src="../scripts/javascript/ghibli-film.js" defer></script>
         <title>Index</title>
     </head>
     <body>
         <div class="all_encompasing_element">
             <div class="program_encompasing_element">
-               
+                <header>
+                    <section class="header_footer">
+                        <section class="header_logo_encompasing_element">
+                            <div class="header_logo_distancing_element"></div>
+                            <article class="logo_and_title">
+                                <svg class="logo_and_title_svg">
+                                    <image href="../images/svg/studio-ghibli-logo-copy.svg" />
+                                </svg>
+                            </article>
+                            <div class="header_logo_distancing_element"></div>
+                        </section>
+                    </section>
+                    <section class="header_main_body">
+                        <form id="bucketForm">
+                            <select class="select_api" id="api_selector">
+                                <option class="select_option_api" value="fake_api">Fake API</option>
+                                <option class="select_option_api" value="real_api">Real API</option>
+                            </select>
+                            <button id="button_fetch_api">Fetch API</button>
+                        </form>
+                    </section>
+                </header>
+                <main>
+                    <section class="main_header_section"></section>
+                    <section class="main_body_section" id="main_body_section"></section>
+                </main>
+                <footer></footer>
             </div>
         </div>
     </body>

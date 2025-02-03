@@ -1,0 +1,26 @@
+
+.header_logo_encompasing_element
+{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: rgb(0, 175, 240);
+}
+
+.header_logo_distancing_element
+{
+    width: calc((100vw - 833px) / 2);
+}
+
+.logo_and_title_svg
+{
+    height: 389px; 
+	width: 833px;
+}
+
+.main_body_section
+{
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: left;
+    gap: 15px;
+}

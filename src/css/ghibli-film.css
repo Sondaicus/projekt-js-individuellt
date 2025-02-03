@@ -1,0 +1,33 @@
+.ghibli-film-document-element
+{
+    background-color: aquamarine;
+}
+
+.ghibli-film-document-element_local-storage-values
+{
+    object-fit: cover;
+
+    p 
+    {
+        max-width: 1460px;
+    }
+}
+
+.ghibli-film-document-element_image
+{
+    width: 400px;
+    height: 600px;
+   
+}
+
+.ghibli-film-document-element_movie_banner
+{
+
+    height: 600px;
+    max-width: 1060px;
+}
+
+h1
+{
+    font-size: 3rem;
+}
