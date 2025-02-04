@@ -1,3 +1,56 @@
+function addInitialEventListeners()
+{
+    document.getElementById("button_fetch_api").addEventListener("click", () => buttonFetchSelectedApi(event));
+}
+
+function addIndividualGhibliFilmEventListeners(filmJsonObject)
+{
+    let correctDataTypeValue = filmJsonObject.id;
+    let documentDeleteButtonElement = document.querySelector("button[class=delete_film_button]" && 'button[data-type="' + correctDataTypeValue + '"]');
+ 
+
+    console.log(documentDeleteButtonElement);
+
+    documentDeleteButtonElement.addEventListener("click", () => buttonDeleteFilm(event));
+
+
+    document.querySelector("button[class=delete_film_button]" && 'button[data-type="' + correctDataTypeValue + '"]').addEventListener("click", () => buttonDeleteFilm(event));
+
+    /*
+
+    for(let currentButton in documentDeleteFilmButtonsArray)
+    {
+        let currentButtonDocumentElement = documentDeleteFilmButtonsArray[currentButton];
+        let currentButtonDataTypeValue = currentButtonDocumentElement.getAttribute("data-type");
+
+        if(currentButtonDataTypeValue == correctDataTypeValue)
+        {
+            currentButtonDocumentElement.addEventListener("click", () => buttonDeleteFilm(event));
+            break;
+        }
+    }
+        */
+        
+}
+
+async function buttonFetchSelectedApi(event)
+{
+    event.preventDefault();
+   
+    let apiResultsToRunWith = await buttonChoseSelectedApi();
+    addFilmsToLocalStorage(apiResultsToRunWith);
+    postFilmsInLocalStorageToDocument();
+
+}
+
+function buttonDeleteFilm(event)
+{
+    event.preventDefault();
+   
+    console.log("hey");
+
+}
+
 async function readApi(api)
 {
     let apiContent = undefined;
@@ -51,11 +104,6 @@ async function getApiJsonContent_real()
     return apiContent_JSON;
 }
 
-function addEventListeners()
-{
-    document.getElementById("button_fetch_api").addEventListener("click", () => buttonFetchSelectedApi(event));
-}
-
 async function buttonChoseSelectedApi()
 {
     let selectedApiType = document.getElementById("api_selector").value;
@@ -97,17 +145,16 @@ function addFilmsToLocalStorage(ghibliFilms)
 async function postFilmInLocalStorageToDocument(filmId)
 {
     let filmStringValue = localStorage.getItem(filmId);
-    let stringElement = await addElementValuesToGhibliFilmString(filmStringValue);
+    let filmJsonObject = jsonifyStringContent(filmStringValue);
+    let stringElement = await addElementValuesToGhibliFilmString(filmStringValue, filmJsonObject);
     let documentPostSection = document.getElementById("main_body_section");
     documentPostSection.innerHTML += stringElement;
-
+    addIndividualGhibliFilmEventListeners(filmJsonObject);
 }
 
 async function postFilmsInLocalStorageToDocument()
 {
     let localStorageElements = await getLocalStorageElements();
-    console.log(localStorageElements);
-
  
     for(let filmId in localStorageElements)
     {
@@ -119,30 +166,22 @@ async function postFilmsInLocalStorageToDocument()
         {
             postFilmInLocalStorageToDocument(filmId);
         }
-
     }
 }
 
-async function addElementValuesToGhibliFilmString(filmStringValue)
+async function addElementValuesToGhibliFilmString(filmStringValue, filmJsonObject)
 {
-    let filmJsonObject = jsonifyStringContent(filmStringValue);
-
-    console.log("");
-    console.log(filmJsonObject);
-    console.log(filmStringValue);
-
     let reutrnValueStringElement = await setKeyValuesToGhibliFilmHtmlElement(filmJsonObject.id);
     reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<h2 class="ghibli-film-document-element_title"><u>Title:</u></h2>', '<h2 class="ghibli-film-document-element_title"><u>Title:</u>' + " " + filmJsonObject.title + '</h2>');
     reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<h3 class="ghibli-film-document-element_original_title"><u>Original title:</u></h3>', '<h3 class="ghibli-film-document-element_original_title"><u>Original title:</u>' + " " + filmJsonObject.original_title + '</h3>');
     reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<h3 class="ghibli-film-document-element_original_title_romanised"><u>Original title romanised:</u></h3>', '<h3 class="ghibli-film-document-element_original_title_romanised"><u>Original title romanised:</u>' + " " + filmJsonObject.original_title_romanised + '</h3>');
-    reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<p class="ghibli-film-document-element_director"><u>Director:</u></p>', '<p class="ghibli-film-document-element_director"><u>Director:</u>' + " " + filmJsonObject.director + '</p>');
-    reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<p class="ghibli-film-document-element_producer"><u>Producer:</u></p>', '<p class="ghibli-film-document-element_producer"><u>Producer:</u>' + " " + filmJsonObject.producer + '</p>');
-    reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<p class="ghibli-film-document-element_release_date"><u>Release date:</u></p>', '<p class="ghibli-film-document-element_release_date"><u>Release date:</u>' + " " + filmJsonObject.release_date + '</p>');
-    reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<p class="ghibli-film-document-element_description"><u>Description:</u><br /></p>', '<p class="ghibli-film-document-element_description"><u>Description:</u><br />' + filmJsonObject.description + '</p>');
+    reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<p class="ghibli-film-document-element_director"><u><b>Director:</b></u></p>', '<p class="ghibli-film-document-element_director"><u><b>Director:</b></u>' + " " + filmJsonObject.director + '</p>');
+    reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<p class="ghibli-film-document-element_producer"><u><b>Producer:</b></u></p>', '<p class="ghibli-film-document-element_producer"><u><b>Producer:</b></u>' + " " + filmJsonObject.producer + '</p>');
+    reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<p class="ghibli-film-document-element_release_date"><u><b>Release date:</b></u></p>', '<p class="ghibli-film-document-element_release_date"><u><b>Release date:</b></u>' + " " + filmJsonObject.release_date + '</p>');
+    reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<p class="ghibli-film-document-element_description"><u><b>Description:</b></u><br /></p>', '<p class="ghibli-film-document-element_description"><u><b>Description:</b></u><br />' + filmJsonObject.description + '</p>');
     reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<img class="ghibli-film-document-element_image" src="" />', '<img class="ghibli-film-document-element_image" src="' + filmJsonObject.image + '" />');
     reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<img class="ghibli-film-document-element_movie_banner" src="" />', '<img class="ghibli-film-document-element_movie_banner" src="' + filmJsonObject.movie_banner + '" />');
-
-    console.log(reutrnValueStringElement);
+    reutrnValueStringElement = await replaceStringValue(reutrnValueStringElement, '<button class="delete_film_button" data-type="">', '<button class="delete_film_button" data-type="' + filmJsonObject.id + '">');
 
     return reutrnValueStringElement;
 }
@@ -156,17 +195,6 @@ function matchLocalStorageObject(object)
 {
 
 }
-
-async function buttonFetchSelectedApi(event)
-{
-    event.preventDefault();
-   
-    let apiResultsToRunWith = await buttonChoseSelectedApi();
-    addFilmsToLocalStorage(apiResultsToRunWith);
-    postFilmsInLocalStorageToDocument();
-
-}
-
 
 async function getLocalStorageElements()
 {
@@ -202,7 +230,7 @@ function setContentValuesToGhibliFilmHtmlElement(ghibliFilmContent, ghibliFilmDo
 
 async function init()
 {
-    addEventListeners();
+    addInitialEventListeners();
 }
 
 init();
