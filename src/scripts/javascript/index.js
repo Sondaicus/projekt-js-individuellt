@@ -1,30 +1,40 @@
 function addInitialEventListeners()
 {
     document.getElementById("button_fetch_api").addEventListener("click", () => buttonFetchSelectedApi(event));
+    document.getElementById("button_add_new_film").addEventListener("click", () => buttonAddNewFilm(event));
 }
 
 function addIndividualGhibliFilmEventListeners(filmJsonObject)
 {
-    addIndividualGhibliFilmDeleteButtonListener(filmJsonObject);
+    addIndividualGhibliFilmButtonListeners(filmJsonObject);
 }
 
-function addIndividualGhibliFilmDeleteButtonListener(filmJsonObject)
+function addIndividualGhibliFilmButtonListeners(filmJsonObject)
 {
     let filmKeyValue = filmJsonObject.id;
     let documentDeleteButtonElement = document.querySelector("button[class=delete_film_button]" && 'button[data-type="' + filmKeyValue + '"]');
     let documentDeleteButtonElement_dataType = documentDeleteButtonElement.getAttribute("data-type");
     let documentDeleteButtonElement_class = documentDeleteButtonElement.getAttribute("class");
 
-    document.body.addEventListener( 'click', 
+    document.body.addEventListener('click', 
         function (event) 
         {
             let document_srcElement_attribute_0 = event.srcElement.attributes[0].value;
-            let document_srcElement_attribute_1 = event.srcElement.attributes[1].value;
 
-            if(document_srcElement_attribute_0 == documentDeleteButtonElement_class && document_srcElement_attribute_1 == documentDeleteButtonElement_dataType)
+            try
             {
-                deleteFilmFromLocalStorage_deleteFilmFromDocument(filmKeyValue);
-            };
+                let document_srcElement_attribute_1 = event.srcElement.attributes[1].value;
+
+                if(document_srcElement_attribute_0 == documentDeleteButtonElement_class && document_srcElement_attribute_1 == documentDeleteButtonElement_dataType)
+                {
+                    if(document_srcElement_attribute_0 == "delete_film_button")
+                    {
+                        deleteFilmFromLocalStorage_deleteFilmFromDocument(filmKeyValue);
+                    }
+                };
+            }
+            catch
+            {}
         });  
 }
 
@@ -35,7 +45,13 @@ async function buttonFetchSelectedApi(event)
     let apiResultsToRunWith = await buttonChoseSelectedApi();
     addFilmsToLocalStorage(apiResultsToRunWith);
     postFilmsInLocalStorageToDocument();
+}
 
+async function buttonAddNewFilm(event)
+{
+    event.preventDefault();
+   
+    console.log("hey");
 }
 
 async function readApi(api)
@@ -130,14 +146,14 @@ async function postFilmInLocalStorageToDocument(filmKeyValue)
     if(filmKeyValue != "undefined")
     {
         let extistingDocumentElement = document.getElementById(filmKeyValue);
-        
+
         if(extistingDocumentElement == null)
         {
             let filmStringValue = localStorage.getItem(filmKeyValue);
             let filmJsonObject = jsonifyStringContent(filmStringValue);
             let stringElement = await addElementValuesToGhibliFilmString(filmStringValue, filmJsonObject);
             let documentPostSection = document.getElementById("main_body_section");
-            documentPostSection.innerHTML += stringElement;
+            documentPostSection.innerHTML = stringElement + documentPostSection.innerHTML;
 
             addIndividualGhibliFilmEventListeners(filmJsonObject);
         }
@@ -179,14 +195,17 @@ function deleteFilmFromLocalStorage_deleteFilmFromDocument(filmKeyValue)
 
 function deleteFilmFromLocalStorage(filmKeyValue)
 {
-    console.log(filmKeyValue);
     localStorage.removeItem(filmKeyValue);
 }
 
 function deleteFilmFromDocument(filmKeyValue)
 {
     let documentFilmElement = document.getElementById(filmKeyValue);
-    documentFilmElement.remove();
+
+    if(documentFilmElement != null)
+    {
+        documentFilmElement.remove();
+    }
 }
 
 async function addElementValuesToGhibliFilmString(filmStringValue, filmJsonObject)
@@ -233,13 +252,6 @@ async function setKeyValuesToGhibliFilmHtmlElement(key)
     let ghibliFilmTemplate = await getGhibliFilmHtmlTemplate();
     let ghibliFilmTemplateWithIds = replaceStringValue(ghibliFilmTemplate, '<div class="ghibli-film-document-element" id="">', '<div class="ghibli-film-document-element" id="' + key + '">');
 
-    /*
-        while(ghibliFilmTemplateWithIds.indexOf('data-type=""') != -1)
-        {
-            ghibliFilmTemplateWithIds = ghibliFilmTemplateWithIds.replace('data-type=""', 'data-type="' + key + '"');
-        }
-    */
-
     return ghibliFilmTemplateWithIds;
 }
 
@@ -251,6 +263,7 @@ function setContentValuesToGhibliFilmHtmlElement(ghibliFilmContent, ghibliFilmDo
 async function init()
 {
     addInitialEventListeners();
+    postFilmsInLocalStorageToDocument();
 }
 
 init();

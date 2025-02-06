@@ -13,6 +13,13 @@
     }
 }
 
+.ghibli-film-document-element_images
+{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 15px;
+}
+
 .ghibli-film-document-element_image
 {
     width: 400px;
@@ -26,6 +33,7 @@
     height: 600px;
     max-width: 1060px;
 }
+
 
 h2
 {

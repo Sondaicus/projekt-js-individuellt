@@ -24,3 +24,15 @@
     justify-content: left;
     gap: 15px;
 }
+
+
+
+.film_user_input
+{
+    width: 500px;
+}
+
+[data-type=original_title_romanised]
+{
+    background-color: blueviolet;
+}
