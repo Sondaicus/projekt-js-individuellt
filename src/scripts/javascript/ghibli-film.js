@@ -39,6 +39,20 @@ class GhibliFilm
         this.setMovie_banner(movie_banner);
     }
 
+    setGhibliFilmValues(id, title, original_title, original_title_romanised, director, producer, release_date, description, image, movie_banner)
+    {
+        this.setId(id);
+        this.setTitle(title);
+        this.setOriginal_title(original_title);
+        this.setOriginal_title_romanised(original_title_romanised);
+        this.setDirector(director);
+        this.setProducer(producer);
+        this.setRelease_date(release_date);
+        this.setDescription(description);
+        this.setImage(image);
+        this.setMovie_banner(movie_banner);
+    }
+
     setId(id)
     {
         this.id = id;

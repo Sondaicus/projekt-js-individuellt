@@ -21,3 +21,10 @@
     height: min-content;
     width: min-content;
 }
+
+.max-content-distancing-element
+{
+    background-color: rgba(37, 40, 211, 0.76);
+    height: 100%;
+    width: 100%;
+}

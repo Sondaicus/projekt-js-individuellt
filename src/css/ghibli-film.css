@@ -1,19 +1,28 @@
 .ghibli-film-document-element
 {
     background-color: aquamarine;
+    max-width: 1495px;
+}
+
+.ghibli-film-document-element_content-encompasing-element
+{
+    width: 98.66220735785953177257525083612040133779%;
+    margin: 10px;
 }
 
 .ghibli-film-document-element_local-storage-values
 {
     object-fit: cover;
-
-    p 
-    {
-        max-width: 1460px;
-    }
 }
 
-.ghibli-film-document-element_images
+.ghibli-film-document-element_images-encompasing-element
+{
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 15px;
+}
+
+.ghibli-film-document-element_images-posted-values
 {
     display: grid;
     grid-template-columns: auto auto;
@@ -24,18 +33,41 @@
 {
     width: 400px;
     height: 600px;
-   
 }
 
 .ghibli-film-document-element_movie_banner
 {
-
     height: 600px;
     max-width: 1060px;
 }
 
-
-h2
+.ghibli-film-document-element_local-storage-values_small_box
 {
-    
+    width: min-content;
+    min-width: 500px;
+    margin:0%;
+}
+
+.ghibli-film-document-element_local-storage-values_max_box
+{
+    width: 100%;
+}
+
+.film_user_input[data-long-desciption="true"]
+{
+    width: 100%;
+}
+
+.film_user_input[data-name="image"], .film_user_input[data-name="movie_banner"]
+{
+    width: 100%;
+}
+
+
+.ghibli-film-document-element_user-input-encompasing-element[data-type="images-posted-values"]
+{
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+    gap: 15px;
 }

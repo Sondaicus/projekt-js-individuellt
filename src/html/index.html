@@ -46,22 +46,52 @@
                         <section class="add_new_film_button_section">
                             <button id="button_add_new_film">Add new film</button>
                         </section>
-                        <section class="add_new_film_user_input_section">
-                            <article class="add_new_value_user_input_article" data-type="title">
-                                <p>Add title</p>
-                                <input type="text" class="film_user_input" id="input_add_new_title" placeholder="Add title of new film" required />
+                        <form id="add_new_film_user_input_parent_element">
+                            <article class="add_new_value_user_input_parent_element" data-type="id">
+                                <p class="element_display_input_info_to_user" data-type="p_input_info_to_user_header">Add id</p>
+                                <input type="text" class="film_user_input" id="input_add_new_id" placeholder="Add id of new film" data-type="add" required />
                             </article>
-                            <article class="add_new_value_user_input_article" data-type="original_title">
-                                <p>Add original title</p>
-                                <input type="text" class="film_user_input" id="input_add_new_original_title" placeholder="Add original title of new film" required />
+                            <article class="add_new_value_user_input_parent_element" data-type="title">
+                                <p class="element_display_input_info_to_user" data-type="p_input_info_to_user_header">Add title</p>
+                                <input type="text" class="film_user_input" id="input_add_new_title" placeholder="Add title of new film" data-type="add" required />
                             </article>
-                            <article class="add_new_value_user_input_article" data-type="original_title_romanised">
-                                <p>Add original title &#x003C;i&#x003e;(romanised)&#x003C;&#x002F;i&#x003e;</p>
-                                <input type="text" class="film_user_input" id="input_add_new_original_title_romanised" placeholder="Add original title &#x003C;i&#x003e;(romanised)&#x003C;&#x002F;i&#x003e; of new film" required />
+                            <article class="add_new_value_user_input_parent_element" data-type="original_title">
+                                <p class="element_display_input_info_to_user" data-type="p_input_info_to_user_header">Add original title</p>
+                                <input type="text" class="film_user_input" id="input_add_new_original_title" placeholder="Add original title of new film" data-type="add" required />
                             </article>
-
-                            <button id="submit_activity">Lägg till</button>
-                        </section>
+                            <section class="add_new_value_user_input_parent_element" data-type="original_title_romanised">
+                                <span class="element_display_input_info_to_user" data-type="span_input_info_to_user_header">Add original title <i>(romanised)</i></span>
+                                <article class="span_input_info_to_user_encomapsing_element_tag">
+                                    <input type="text" class="film_user_input" data-type="span_input_info_to_user_header" id="input_add_new_original_title_romanised" data-type="add" required />
+                                    <span class="span_input_info_to_user" data-type="span_input_info_to_user_placeholder" data-indented="false">Add original title <i>(romanised)</i> of new film</span>
+                                </article>
+                            </section>
+                            <article class="add_new_value_user_input_parent_element" data-type="director">
+                                <p class="element_display_input_info_to_user" data-type="p_input_info_to_user_header">Director</p>
+                                <input type="text" class="film_user_input" id="input_add_new_director" placeholder="Add director of new film" data-type="add" required />
+                            </article>
+                            <article class="add_new_value_user_input_parent_element" data-type="producer">
+                                <p class="element_display_input_info_to_user" data-type="p_input_info_to_user_header">Producer</p>
+                                <input type="text" class="film_user_input" id="input_add_new_producer" placeholder="Add producer of new film" data-type="add" required />
+                            </article>
+                            <article class="add_new_value_user_input_parent_element" data-type="release_date">
+                                <p class="element_display_input_info_to_user" data-type="p_input_info_to_user_header">Release date</p>
+                                <input type="text" class="film_user_input" id="input_add_new_release_date" placeholder="Add release date of new film" data-type="add" required />
+                            </article>
+                            <article class="add_new_value_user_input_parent_element" data-type="description">
+                                <p class="element_display_input_info_to_user" data-type="p_input_info_to_user_header">Description</p>
+                                <textarea type="text" class="film_user_input" id="input_add_new_description" placeholder="Add description of new film" data-type="add" data-scrollbar="true"></textarea>
+                            </article>
+                            <article class="add_new_value_user_input_parent_element" data-type="image">
+                                <p class="element_display_input_info_to_user" data-type="p_input_info_to_user_header">Image</p>
+                                <input type="text" class="film_user_input" id="input_add_new_image" placeholder="Add source for image of new film" data-type="add" />
+                            </article>
+                            <article class="add_new_value_user_input_parent_element" data-type="movie_banner">
+                                <p class="element_display_input_info_to_user" data-type="p_input_info_to_user_header">Movie banner</p>
+                                <input type="text" class="film_user_input" id="input_add_new_movie_banner" placeholder="Add source for movie banner of new film" data-type="add" />
+                            </article>
+                            <input type="submit" id="submit_activity" value="Submit" />
+                        </form>
                     </section>
                     <section class="main_body_section" id="main_body_section"></section>
                 </main>

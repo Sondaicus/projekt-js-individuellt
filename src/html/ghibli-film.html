@@ -1,18 +1,72 @@
 <div class="ghibli-film-document-element" id="">
-    <section class="ghibli-film-document-element_local-storage-values">
-        <h2 class="ghibli-film-document-element_title"><u>Title:</u></h2>
-        <h3 class="ghibli-film-document-element_original_title"><u>Original title:</u></h3>
-        <h3 class="ghibli-film-document-element_original_title_romanised"><u>Original title romanised:</u></h3>
-        <p class="ghibli-film-document-element_director"><u><b>Director:</b></u></p>
-        <p class="ghibli-film-document-element_producer"><u><b>Producer:</b></u></p>
-        <p class="ghibli-film-document-element_release_date"><u><b>Release date:</b></u></p>
-        <p class="ghibli-film-document-element_description"><u><b>Description:</b></u><br /></p>
-        <article class="ghibli-film-document-element_images">
-            <img class="ghibli-film-document-element_image" src="" />
-            <img class="ghibli-film-document-element_movie_banner" src="" />
-        </article>
-    </section>
-    <section class="ghibli-film-document-element_user-inputs">
-        <button class="delete_film_button" data-type="">Delete film</button>
+    <section class="ghibli-film-document-element_content-encompasing-element">
+        <section class="ghibli-film-document-element_local-storage-values">
+            <section class="ghibli-film-document-element_local-storage-values_small_box">
+                <section>
+                    <h2 class="ghibli-film-document-element_title"><u>Title:</u></h2>
+                    <article class="ghibli-film-document-element_user-input-encompasing-element">
+                        <input type="text" class="film_user_input" placeholder="Update title of film" data-type="update" data-user-display="show/hide" data-name="title" />
+                    </article>
+                </section>
+                <section>
+                    <h3 class="ghibli-film-document-element_original_title"><u>Original title:</u></h3>
+                    <article class="ghibli-film-document-element_user-input-encompasing-element">
+                        <input type="text" class="film_user_input" placeholder="Update original title of film" data-type="update" data-user-display="show/hide" data-name="original_title" />
+                    </article>
+                </section>
+                <section>
+                    <h3 class="ghibli-film-document-element_original_title_romanised"><u>Original title romanised:</u></h3>
+                    <section class="ghibli-film-document-element_user-input-encompasing-element">
+                        <article class="span_input_info_to_user_encomapsing_element_tag">
+                            <input type="text" class="film_user_input" data-type="span_input_info_to_user_header" data-type="update" data-user-display="show/hide" data-name="original_title_romanised" />
+                            <span class="span_input_info_to_user" data-type="span_input_info_to_user_placeholder" data-indented="false" data-user-display="show/hide">Update original title <i>(romanised)</i> of film</span>
+                        </article>
+                    </section>
+                </section>
+                <section>
+                    <p class="ghibli-film-document-element_director"><u><b>Director:</b></u></p>
+                    <article class="ghibli-film-document-element_user-input-encompasing-element">
+                        <input type="text" class="film_user_input" placeholder="Update director of film" data-type="update" data-user-display="show/hide" data-name="director" />
+                    </article>
+                </section>
+                <section>
+                    <p class="ghibli-film-document-element_producer"><u><b>Producer:</b></u></p>
+                    <article class="ghibli-film-document-element_user-input-encompasing-element">
+                        <input type="text" class="film_user_input" placeholder="Update producer of film" data-type="update" data-user-display="show/hide" data-name="producer" />
+                    </article>
+                </section>
+                <section>
+                    <p class="ghibli-film-document-element_release_date"><u><b>Release date:</b></u></p>
+                    <article class="ghibli-film-document-element_user-input-encompasing-element">
+                        <input type="text" class="film_user_input" placeholder="Update release date of film" data-type="update" data-user-display="show/hide" data-name="release_date" />
+                    </article>
+                </section>
+            </section>
+            <section class="ghibli-film-document-element_local-storage-values_max_box">
+                <section>
+                    <p class="ghibli-film-document-element_description"><u><b>Description:</b></u><br /></p>
+                    <article class="ghibli-film-document-element_user-input-encompasing-element">
+                        <textarea type="text" class="film_user_input" placeholder="Update description of film" data-type="update" data-user-display="show/hide" data-scrollbar="true" data-long-desciption="true" data-name="description"></textarea>
+                    </article>
+                </section>
+                <section class="ghibli-film-document-element_images-encompasing-element">
+                    <article class="ghibli-film-document-element_images-posted-values">
+                        <img class="ghibli-film-document-element_image" src="" />
+                        <img class="ghibli-film-document-element_movie_banner" src="" />
+                    </article>
+                    <article class="ghibli-film-document-element_user-input-encompasing-element" data-type="images-posted-values">
+                        <input type="text" class="film_user_input" placeholder="Update image source of film" data-type="update" data-user-display="show/hide" data-name="image" />
+                        <input type="text" class="film_user_input" placeholder="Update movie banner source of film" data-type="update" data-user-display="show/hide" data-name="movie_banner" />
+                    </article>
+                </section>
+            </section>
+            <section class="ghibli-film-document-element_local-storage-values_buttons_box">
+                <button class="save_film_updates_button" data-type="" data-user-display="show/hide">Save Film updates</button>
+            </section>
+        </section>
+        <section class="ghibli-film-document-element_user-inputs">
+            <button class="delete_film_button" data-type="">Delete film</button>
+            <button class="update_film_button" data-type="">Update film</button>
+        </section>
     </section>
 </div>
